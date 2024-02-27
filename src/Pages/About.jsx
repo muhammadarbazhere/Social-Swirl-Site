@@ -1,8 +1,13 @@
 import React from 'react'
+import Testimonial from './Home/Testimonials/Testimonial'
 
 function About() {
   return (
-    <div>About</div>
+    <div>
+
+<Testimonial/>
+
+    </div>
   )
 }
 

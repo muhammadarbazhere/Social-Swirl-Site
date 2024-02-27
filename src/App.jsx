@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Pages/Navbar';
-import Home from './Pages/Home';
 import About from './Pages/About';
+import Home from './Pages/Home/Home';
+import Footer from './Pages/Footer/Footer';
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
         {/* <Route path="/learning" element={<Learning />} /> */}
       </Routes>
 
-      {/* <Footer/> */}
+      <Footer/>
     </BrowserRouter>
 
 
