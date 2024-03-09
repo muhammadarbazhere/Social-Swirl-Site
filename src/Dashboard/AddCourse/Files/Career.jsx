@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdBusiness, MdDashboardCustomize } from 'react-icons/md';
+import { MdBusiness } from 'react-icons/md';
 
 function Career() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

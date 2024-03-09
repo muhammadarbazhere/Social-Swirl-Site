@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MdDashboardCustomize } from 'react-icons/md';
 
-function DashboardNavbar() {
+function DashboardPage() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const openDropdown = () => {
@@ -52,4 +52,4 @@ function DashboardNavbar() {
   );
 }
 
-export default DashboardNavbar;
+export default DashboardPage;

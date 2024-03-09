@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { MdNotifications, MdSettings } from "react-icons/md";
-import Dashboard from "../Dashboard";
 
-import Career from "./CareerPage/Career";
+
+import Career from "./Files/Career";
 import ELearning from "./Files/ELearning";
 import User from "../../Pages/User";
 import Header from "./Files/Header";
+import DashboardPage from "./Files/DashboardPage";
 
-function NavbarMain() {
+function SecondNavbar() {
   const [dashboardDropdownOpen, setDashboardDropdownOpen] = useState(false);
   const [settingsDropdownOpen, setSettingsDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -43,7 +44,7 @@ function NavbarMain() {
       </div>
       <div className="flex space-x-10 items-center">
         {/* Dashboard */}
-        <Dashboard />
+        <DashboardPage />
 
         {/* Services */}
         <Career />
@@ -90,4 +91,4 @@ function NavbarMain() {
   );
 }
 
-export default NavbarMain;
+export default SecondNavbar;

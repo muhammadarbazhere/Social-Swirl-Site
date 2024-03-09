@@ -7,9 +7,13 @@ import Learning from './Pages/E-Learning/learning';
 import EnrollNow from './Pages/Enroll/EnrollNow';
 import Enrollmentform from './Pages/Enroll/Enrollmentform';
 import Navbar from './Pages/Navbar';
-import Footer from './Pages/Footer/Footer'
+// import Footer from './Pages/Footer/Footer'
 
 import DashboardMain from './Dashboard/MainDashboard/DashboardMain'
+import SecondNavbar from './Dashboard/AddCourse/SecondNavbar';
+import Header from './Dashboard/AddCourse/Files/Header';
+import Career from './Dashboard/AddCourse/Files/Career';
+import MySecondHome from './Dashboard/AddCourse/MySecondHome';
 
 function App() {
   return (
@@ -29,22 +33,58 @@ function AppRoutes() {
     return location.pathname === '/dashboard';
   };
 
+  const isMyRoute = () => {
+    return location.pathname.startsWith('/My');
+  };
+
   return (
     <>
-    
-      {isDashboardRoute() ? <DashboardMain /> : <Navbar />}
-
+      {isDashboardRoute() ? (
+        <DashboardMain />
+      ) : isMyRoute() ? (
+        <SecondNavbar />
+      ) : (
+        <Navbar />
+      )}
+      
       <Routes>
+        {/* APP ROUTES */}
         <Route path="/" exact element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/learning" element={<Learning />} />
         <Route path="/enroll" element={<EnrollNow />} />
         <Route path="/form" element={<Enrollmentform />} />
-      </Routes>
 
-      {!isDashboardRoute() && <Footer />}
+        <Route path="/MySecondHome" element={<MySecondHome />} />
+      </Routes>
     </>
   );
 }
 
+
+
+
 export default App;
+
+
+
+//  {/* {!isDashboardRoute() && <Footer />} */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
