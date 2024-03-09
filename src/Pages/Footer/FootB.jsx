@@ -5,17 +5,19 @@ import {
   FaLinkedin,
   FaTwitterSquare,
 } from 'react-icons/fa';
+import logo from '../../assets/logo.jpg'
 
 const FootB = () => {
+
   return (
-    <div className='w-full h-auto bg-blue-400 mt-6 md:mt-0 pb-0 md:pb-10 flex items-center justify-center'>
+    <div className='w-full h-auto bg-gradient-to-r from-cyan-500 to-blue-500 mt-6 md:mt-0 pb-0 md:pb-10 flex items-center justify-center'>
       <div className='w-full py-10 md:py-10 mx-0 text-white flex flex-col   sm:flex-row md:flex-row lg:flex-row justify-around sm:justify-center '>
 
 
         <div className='flex flex-col justify-center  items-center sm:items-start sm:mx-3 sm:mt-14'>
           <div className=' w-auto sm:w-full h-16'>
           <img
-            src="https://socialswirl.org/assets/logoSocialSwirl-5ad4fd8b.png"
+            src={logo}
             alt="logo"
             className='w-20 h-auto'
           />

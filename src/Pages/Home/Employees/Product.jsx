@@ -1,46 +1,66 @@
 import MyImg from '../../../assets/myImage.jpg'
-import img1 from '../../../assets/waleed.jpg'
-import img2 from '../../../assets/danial.jpg'
+import waleed from '../../../assets/waleed.jpg'
+import danial from '../../../assets/danial.jpg'
 import logo from '../../../assets/logo.jpg'
+import gulshaer from '../../../assets/gul-shaer.jpeg'
 
 const products = [
   {
     id: 1,
+    image: MyImg,
     title: 'Arbaz',
     description: 'MERN Stack Developer',
-    image: MyImg
+    bio:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maiores ea libero debitis similique '
   },
     {
       id: 2,
+      image: waleed,
       title: 'Waleed',
       description: 'React Developer',
-      image: img1
+      bio:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maiores ea libero debitis similique'
     },
     {
       id: 3,
+      image: danial,
       title: 'Danial Khan',
       description: 'CEO Social Swirl',
-      image: img2
+      bio:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maiores ea libero debitis similique'
     },
   
       {
         id: 4,
+        image: gulshaer,
         title: 'GulSher',
         description: 'MERN Stack Developer',
-        image: logo
-       
+        bio:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maiores ea libero debitis similique'
       },
       {
         id: 5,
+        image: logo,
         title: 'Ahmad',
         description: 'WordPress Developer',
-        image: logo
+        bio:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maiores ea libero debitis similique'
       },
       {
         id: 6,
+        image: logo,
         title: 'Sami',
         description: 'Seo Expert',
-        image: logo
+        bio:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maiores ea libero debitis similique'
+      },
+      {
+        id: 7,
+        image: logo,
+        title: 'Naseer',
+        description: 'Human Resource',
+        bio:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maiores ea libero debitis similique'
+      },
+      {
+        id: 8,
+        image: logo,
+        title: 'Imran',
+        description: 'Graphic Designer',
+        bio:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed, maiores ea libero debitis similique'
       },
     
   ];

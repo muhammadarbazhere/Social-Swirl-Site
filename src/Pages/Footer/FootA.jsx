@@ -1,9 +1,18 @@
 import React from 'react'
 
 function FootA() {
+
+  const handleSubmit = () => {
+    
+    setTimeout(() => {
+      window.location.href = 'tel:+923104163789';
+    }, 1000); 
+  };
+
+
   return (
   
-        <div className=" bg-blue-400 flex flex-col sm:flex-row  justify-center items-center gap-2 px-0 sm:px-20  py-16 w-full mb-2">
+        <div className=" bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col sm:flex-row  justify-center items-center gap-2 px-0 sm:px-20  py-16 w-full mb-2">
 
   <div className="  flex flex-col items-center sm:items-start w-full md:w-7/12 ">
 
@@ -16,7 +25,7 @@ function FootA() {
 
   </div >
 
-  <button className="border-2 border-brown-700  font-[Chivo] flex items-center w-24 h-12 text-black bg-white border-white hover:text-white hover:bg-black hover:border-black rounded-md font-chivo text-lg">
+  <button onClick={handleSubmit} className="border-2 border-brown-700  font-[Chivo] flex items-center w-24 h-12 text-black bg-white border-white hover:text-white hover:bg-black hover:border-black rounded-md font-chivo text-lg">
     Get Started
   </button>
   

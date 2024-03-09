@@ -6,7 +6,7 @@ import products from './Product';
 
 const Employees = () => {
   return (
-    <div className="w-full h-auto flex justify-center items-center">
+    <div className="w-full h-auto flex justify-center  items-center">
 
 
 
@@ -25,6 +25,7 @@ const Employees = () => {
           },
         }}
         autoplay={{ delay: 1000 }}
+        
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
       >
@@ -37,10 +38,14 @@ const Employees = () => {
                 alt={item.title}
                 className=" border w-auto border-blue-500 rounded-full"
               />
-              <div className="text-center mt-2 ml-4 font-[Comfortaa]">
-                <p className="text-[#374151] mt-2 ">{item.title}</p>
+              <div className="text-center mt-2  font-[Chivo]">
+                <p className="text-[#374151]  mt-2 font-extrabold">{item.title}</p>
                 <p className="text-[#374151] mt-2">{item.description}</p>
-                <button className="bg-blue-500 mt-2 hover:bg-blue-600 text-white rounded-lg px-5 py-2 font-[Chivo]">Explore</button>
+
+                <p className='space-x-1 flex text-[#374151] justify-center mt-2'>
+                 {item.bio}
+                  </p>
+
               </div>
             </div>
             </div>
