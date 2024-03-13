@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { TiThMenu } from "react-icons/ti";
 import logo from '../assets/logo.jpg'
-import adminImg from '../assets/admin-image.jpg'
+import adminImg from '../assets/myImage.jpg'
 
 function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -11,6 +11,9 @@ function Navbar() {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+  const CloseDropDown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  }
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -21,7 +24,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-white sticky top-0 z-50 text-[#374151] border-gray-200 dark:bg-gray-900 ">
+    <nav onClick={ CloseDropDown} className="bg-white sticky top-0 z-50 text-[#374151] border-gray-200 dark:bg-gray-900 ">
       <div className="w-full xl:px-24 flex flex-wrap flex-row md:flex-row md:items-center items-start justify-between text-[#374151] mx-0 lg:mx-0 px-2">
         <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={logo} className="h-16 w-16" alt="Social Swirl" />
@@ -66,8 +69,8 @@ function Navbar() {
             className={`z-50 ${isDropdownOpen ? 'block' : 'hidden'} my-0 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute right-0 mt-36 xl:right-14 font-[Chivo] `}
             id="user-dropdown"
           >
-            <NavLink to="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={closeDrawer}>Dashboard</NavLink>
-            <NavLink to="/logout" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={closeDrawer}>Logout</NavLink>
+            <NavLink to="/dashboard" className="block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={closeDrawer}>Dashboard</NavLink>
+            <NavLink to="/logout" className="block px-6 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={closeDrawer}>Logout</NavLink>
           </div>
         </div>
       </div>

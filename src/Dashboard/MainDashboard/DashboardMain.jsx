@@ -89,7 +89,7 @@ const Dashboard = () => {
 
           <NavLink to="/MySecondHome" className="items-center flex text-black py-3 px-6 text-sm  hover:bg-gray-300" activeClassName="bg-gray-800">
             <MdOutlineAdminPanelSettings className='text-black px-1' size={30}/>
-            <h1 className='px-2'>Dashboard</h1>
+            <h1 className='px-2'>Interface</h1>
             </NavLink>
 <hr />
           <NavLink to="#" className="flex items-center py-3 px-6 text-sm  hover:bg-gray-300" activeClassName="bg-gray-800">
