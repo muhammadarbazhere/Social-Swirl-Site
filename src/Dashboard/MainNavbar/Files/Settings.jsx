@@ -33,7 +33,7 @@ function Settings() {
       <p
         id="dropdownHoverButton"
         onClick={openDropdown}
-        className="text-[#5F9BCE] lg:text-white  cursor-pointer font-medium rounded-lg gap-2  font-[Chivo] text-md px-1 py-5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="text-[#5F9BCE] lg:text-white  cursor-pointer font-medium rounded-lg gap-2  font-[Chivo] text-md px-1 py-5 text-center inline-flex items-center dark:bg-blue-600 hover:rotate-90 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
       >
          <MdSettings size={30} />

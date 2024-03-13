@@ -44,7 +44,7 @@ function User() {
         >
           <li>
             <a
-              href="#"
+              href="MyLogin"
               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
             >
            Login
@@ -53,7 +53,7 @@ function User() {
           <hr />
           <li>
             <a
-              href="#"
+              href="MyRegister"
               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
             >
              Register
@@ -62,7 +62,7 @@ function User() {
           <hr />
           <li>
             <a
-              href="#"
+              href="MyForgetPassword"
               className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
             >
               Forget Password

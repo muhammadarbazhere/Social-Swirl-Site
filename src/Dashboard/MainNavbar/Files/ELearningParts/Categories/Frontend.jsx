@@ -46,14 +46,14 @@ function Frontend() {
       
 <div className='flex'>
       <h1 className="w-full h-28 text-gray-500 text-md flex items-center">
-        You are here: Home / E-Learning / Front-End Courses
+        You are here: Home / E-Learning / Front-End Development
       </h1>
 
       <div className="flex items-center gap-2">
         <input
           ref={inputRef} 
           type="text"
-          placeholder="Search courses..."
+          placeholder="Search Courses..."
           className="border border-gray-300 px-6 py-2 rounded-md focus:outline-none focus:border-blue-500" 
           />
              <MdOutlineSearch size={20} className="text-gray-500 " /> 

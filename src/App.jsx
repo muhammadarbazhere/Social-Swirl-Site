@@ -24,6 +24,12 @@ import HumanResource from './Dashboard/MainNavbar/Files/ELearningParts/Categorie
 import Jobs from './Dashboard/MainNavbar/Files/CareerParts/Jobs';
 import Internship from './Dashboard/MainNavbar/Files/CareerParts/Internship';
 
+import FooterDashboard from './Dashboard/MainNavbar/Files/FooterDashboard';
+import Footer from './Pages/Footer/Footer'
+import Login from './Dashboard/MainNavbar/Files/UserParts/Files/Login';
+import Register from './Dashboard/MainNavbar/Files/UserParts/Files/Register';
+import Forget from './Dashboard/MainNavbar/Files/UserParts/Files/Forget';
+
 function App() {
   return (
     <BrowserRouter>
@@ -74,7 +80,16 @@ function AppRoutes() {
         <Route path="/MyJobs" element={<Jobs />} />
         <Route path="/MyInternships" element={<Internship />} />
 
+         {/* USER ROUTES FROM SECOND NAVBAR */}
+         <Route path="/MyLogin" element={<Login />} />
+         <Route path="/MyRegister" element={<Register />} />
+         <Route path="/MyForgetPassword" element={<Forget />} />
+
       </Routes>
+
+      {isDashboardRoute() ? null : isMyRoute() ? <FooterDashboard /> :  <Footer />}
+
+
     </>
   );
 }
@@ -83,7 +98,7 @@ export default App;
 
 
 
-//  {/* {!isDashboardRoute() && <Footer />} */}
+
 
 
 

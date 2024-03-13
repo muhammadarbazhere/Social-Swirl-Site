@@ -18,7 +18,7 @@ function MySecondHome() {
   }, []);
 
   return (
-    <div className='w-full h-full bg-blue-100 font-[Chivo] px-10'>
+    <div className='w-full h-[70vh] bg-blue-100 font-[Chivo] px-10'>
       <h1 className='w-full h-28 text-gray-500 text-md flex items-center'>
         You are here: Home / Social Swirl Dashboard
       </h1>
@@ -32,6 +32,7 @@ function MySecondHome() {
           {name}
         </h1>
       </div>
+
     </div>
   );
 }

@@ -11,8 +11,8 @@ export default function AddJobInternshipForm() {
         title: '',
         description: '',
         type: '',
-        jobOrInternship: '', // Updated state to hold job or internship selection
-        closeAfter: '' // State to hold the duration after which job closes
+        jobOrInternship: '',
+        closeAfter: '' 
     });
 
     const handleSubmit = (e) => {
@@ -20,15 +20,15 @@ export default function AddJobInternshipForm() {
         const todayDate = new Date().toISOString().slice(0, 10);
         dispatch(addJobInternship({
             ...formData,
-            uploadDate: todayDate, // Set current date
-            issue: todayDate // Set current date as default issue date
+            uploadDate: todayDate, 
+            issue: todayDate 
         }));
-        navigate('/MySecondHome');
+        navigate('/MyJobsList');
         setFormData({
             title: '',
             description: '',
             type: '',
-            jobOrInternship: '', // Resetting job or internship selection after form submission
+            jobOrInternship: '', 
             closeAfter: ''
         });
     };

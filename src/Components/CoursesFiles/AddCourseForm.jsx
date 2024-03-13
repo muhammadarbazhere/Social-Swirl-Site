@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCourseFunc } from '../CourseSlice';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/logo.jpg'
 
 export default function AddCourseForm() {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ export default function AddCourseForm() {
 
         <div className=" w-full h-auto flex justify-center items-center rounded-md mb-2">
         
-          <img src='http://127.0.0.1:3000/images/icon/logoSocialSwirl-5ad4fd8b.png' alt="Logo" className="mb-5 w-24 h-24" />
+          <img src={logo} alt="Logo" className="mb-5 w-24 h-24" />
 
         </div>
         <form onSubmit={handleSubmit} className="mx-auto">
