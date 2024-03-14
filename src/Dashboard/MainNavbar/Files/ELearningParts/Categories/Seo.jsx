@@ -1,157 +1,116 @@
-import React, { useEffect, useRef, useState } from "react";
-import { MdArrowOutward, MdOutlineMiscellaneousServices, MdOutlineSearch } from "react-icons/md";
-import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
-import { MdAddToPhotos } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import EditCourse from "../../../../../Components/CoursesFiles/EditCourse";
-import { deleteCourseFunc } from "../../../../../Components/CourseSlice";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { showUser, deleteCourseFunc } from '../../../../../Components/CourseSlice';
+import { Link } from 'react-router-dom';
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { RiEditLine } from "react-icons/ri";
+import { FaChevronLeft, FaChevronRight, FaRegTrashAlt } from 'react-icons/fa';
+import { FaArrowTrendUp } from 'react-icons/fa6';
 
 function Seo() {
-  const courses = useSelector((state) => state.courseStore.data);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(4);
 
-  const SeoCourses = courses.filter(
-    (course) => course.Category === "Seo"
-  );
+    const dispatch = useDispatch();
+    const { users, loading, error } = useSelector(state => state.app);
+    
+    const frontEndCourses = users.filter(user => user.category === "SEO");
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+    useEffect(() => {
+        dispatch(showUser());
+    }, [dispatch]);
 
-  const [editCourseId, setEditCourseId] = useState(null);
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentUsers = frontEndCourses.slice(indexOfFirstPost, indexOfLastPost); // Use frontEndCourses instead of users
 
-  const handleDelete = (id) => {
-    console.log("Deleting course with ID:", id);
-    dispatch(deleteCourseFunc(id));
-  };
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  const handleEdit = (id) => {
-    setEditCourseId(id);
-  };
-
-  const handleCloseEdit = () => {
-    setEditCourseId(null);
-  };
-
-  const inputRef = useRef(null);
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []); 
-
-  const handleAdd = () => {
-    navigate("/MyAddCourse");
-  };
-
-  return (
-    <div className="bg-blue-100 lg:px-10 font-[Chivo] pt-4 pb-12">
-      
-<div className='flex'>
-      <h1 className="w-full h-28 text-gray-500 text-md flex items-center">
-        You are here: Home / E-Learning / Seo
-      </h1>
-
-      <div className="flex items-center gap-2">
-        <input
-          ref={inputRef} 
-          type="text"
-          placeholder="Search Courses..."
-          className="border border-gray-300 px-6 py-2 rounded-md focus:outline-none focus:border-blue-500" 
-          />
-             <MdOutlineSearch size={20} className="text-gray-500 " /> 
-      </div>
-</div>
-
-<h1 className="text-center font-semibold text-3xl pt-6 pb-6 text-blue-400">
-    Seo Courses
-</h1>
-<hr />
-
-      <div className="pt-8">
-        {editCourseId && (
-          <EditCourse courseId={editCourseId} onClose={handleCloseEdit} />
-        )}
-      </div>
-
-      <div className="flex flex-wrap gap-16   justify-center  mb-5">
-        {SeoCourses.length > 0 ? (
-          SeoCourses.map((item) => (
-            <div
-              key={item.id}
-              className="w-[28%] bg-white border-2 border-white   rounded-lg shadow-md overflow-hidden relative"
-            >
-              <div className="px-0 justify-center flex flex-col pb-0 h-auto ">
-                <div className=" flex items-center justify-center w-full   ">
-                  {item.Image ? (
-                    <img
-                      className="w-full h-full "
-                      src={item.Image}
-                      alt="Course Link"
-                    />
-                  ) : (
-                    <p>No image available</p>
-                  )}
-                </div>
-                <div className="px-3">
-                  <p className="text-xl mt-3 font-bold  text-gray-800">{item.Title}</p>
-                  <p className="text-sm mb-1 text-gray-700 font-bold flex items-center  gap-1 ">
-                    {item.Category}
-                    <span>
-                      <MdArrowOutward size={15}/>
-                    </span>
-                  </p>
-
-                  <p className="text-md text-gray-600 leading-snug">
-                    {item.Description}
-                  </p>
-
-                  <div className="flex justify-end">
-                    <p className="text-lg font-semibold text-gray-700">{item.Duration}</p>
-                  </div>
-
-                  <div className="flex justify-end pt-1">
-                    <p className="text-2xl font-[Comfortaa] text-blue-500 font-semibold">
-                      Only ${item.Charges}
-                    </p>
-                  </div>
-                </div>
-
-                <div className=" right-0 flex space-x-4 m-2">
-                  <button
-                    className="bg-white border-2 border-blue-400 rounded-full px-2 py-2 hover:bg-blue-400 hover:text-white text-blue-400"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    <RiDeleteBinLine size={22} />
-                  </button>
-                  <button
-                    className="bg-white border-2 border-blue-400 rounded-full px-2 py-2 hover:bg-blue-400 hover:text-white text-blue-400"
-                    onClick={() => handleEdit(item.id)}
-                  >
-                    <RiEdit2Line size={22} />
-                  </button>
-                </div>
-              </div>
+    return (
+        <div className="  font-[Chivo] py-10 px-10">
+            <h1 className="text-3xl font-bold text-gray-800 text-center">Seo Courses</h1>
+            <div className='flex justify-end py-4 flex-row'>
+                <Link to="/MyAddCourse" className="bg-red-400 text-white px-4 py-2 rounded-md hover:bg-black   flex items-center">
+                    Add Courses <IoIosAddCircleOutline size={24} className="ml-2" />
+                </Link>
             </div>
-          ))
-        ) : (
-            
-            <div>
-          <p className="font-bold text-gray-600">No courses available yet in Seo category.</p>
+            {loading && (<div className="flex items-center justify-center mt-10"><div className="w-6 h-6 mr-3 border-t-2 border-b-2 border-gray-500 rounded-full animate-spin"></div><p className="text-secondary">Loading...</p></div>)}
+         
+            {error && (<p className="text-center text-red-500 mt-3"><span className="font-bold">Error:</span> {error}</p>)}
+            <ToastContainer />
 
-          <div className="flex justify-center mt-6">
-          <div
-            className="flex gap-2 text-white bg-red-500 hover:bg-black rounded-full px-6 py-2 justify-center items-center cursor-pointer "
-            onClick={handleAdd}
-          >
-            <button className="text-xl">Add Courses</button>
-            <MdAddToPhotos size={20} />
-          </div>
+            {frontEndCourses.length === 0 ? (
+                <div className="flex justify-center h-full ">
+                    <p className='text-lg text-center pt-12 text-gray-700 font-bold'>No Seo courses avalaible</p>
+                </div>
+            ) : (
+                <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  mt-3">
+                    {currentUsers.map(user => (
+                        <div key={user.id} className="max-w-sm rounded-md overflow-hidden bg-white border-2 border-white shadow-lg">
+                            <img src={user.image} className="w-full h-64 object-cover" alt={user.title} />
+                            <div className="px-3 py-2">
+                                <div className="font-bold text-gray-800 text-xl mb-0">{user.title}</div>
+                                <p className="text-gray-700 flex gap-2 font-bold text-sm mb-1"> 
+                                  <h1>{user.category}</h1> 
+                                   <span><FaArrowTrendUp size={20}/></span>
+                                   </p>
+                                <p className="text-gray-700 pb-1 text-base"> {user.description}</p>
+
+                                <div className='flex items-center justify-between'>
+                                <p className="text-gray-700 font-semibold  text-end text-lg"> {user.duration}</p>
+                               
+                                <p className="text-[#5F9BCE] font-[Comfortaa] text-end text-2xl">
+                                  <span>only  </span>
+                                    ${user.charges}</p>
+                                    </div>
+
+                                    </div>
+                                
+                            <div className=" flex justify-end gap-3 px-3 py-2">
+                                <Link to={`/MyEdit/${user.id}`} className="text-[#5F9BCE] border-2 border-[#5F9BCE] hover:text-white rounded-full p-2 hover:bg-[#5F9BCE] focus:outline-none"> <RiEditLine size={22} /></Link>
+                                <button onClick={() => dispatch(deleteCourseFunc(user.id))} className="text-[#5F9BCE] border-2 border-[#5F9BCE] hover:text-white rounded-full p-2 hover:bg-[#5F9BCE] focus:outline-none"> <FaRegTrashAlt size={20} /></button>
+                            </div>
+                            
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            <div className="flex justify-center pt-6 ">
+                <button
+                    className="mx-1 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none"
+                    onClick={() => setCurrentPage(currentPage === 1 ? currentPage : currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    <FaChevronLeft />
+                </button>
+                {Array.from({ length: Math.ceil(frontEndCourses.length / postsPerPage) }, (_, i) => (
+                    <button
+                        key={i}
+                        className={`mx-1 px-3 py-1 ${currentPage === i + 1 ? 'bg-blue-600 text-white' : 'bg-[#5F9BCE] text-white hover:bg-[#5F9BCE]'
+                            } rounded-lg hover:bg-[#5F9BCE] focus:outline-none`}
+                        onClick={() => paginate(i + 1)}
+                    >
+                        {i + 1}
+                    </button>
+                ))}
+                <button
+                    className="mx-1 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none"
+                    onClick={() =>
+                        setCurrentPage(currentPage === Math.ceil(frontEndCourses.length / postsPerPage) ? currentPage : currentPage + 1)
+                    }
+                    disabled={currentPage === Math.ceil(frontEndCourses.length / postsPerPage)}
+                >
+                    <FaChevronRight />
+                </button>
+            </div>
+          
         </div>
-        </div>
-
-
-        )}
-      </div>
-    </div>
-  );
+    );
 }
 
-export default Seo
+export default Seo;

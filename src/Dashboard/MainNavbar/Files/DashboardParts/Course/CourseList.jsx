@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { MdOutlineSearch } from "react-icons/md";
+import CoursesList from '../../../../../Components/CoursesFiles/CoursesList';
 import CoursesTable from '../../../../../Components/CoursesFiles/CoursesTable';
 
 function CourseList() {
@@ -31,7 +32,7 @@ function CourseList() {
       </div>
     
 
-<CoursesTable/>
+<CoursesList/>
     </div>
 
   );

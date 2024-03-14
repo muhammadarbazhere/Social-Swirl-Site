@@ -1,46 +1,161 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const CourseSlice = createSlice({
-  name: "courses",
+//create action
+export const createUser = createAsyncThunk(
+  "createUser",
+  async (data, { rejectWithValue }) => {
+    console.log("data", data);
+    const response = await fetch(
+      "https://65f2b05d034bdbecc765912d.mockapi.io/Social",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    try {
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+//read action
+export const showUser = createAsyncThunk(
+  "showUser",
+  async (_, { rejectWithValue }) => {
+    const response = await fetch(
+      "https://65f2b05d034bdbecc765912d.mockapi.io/Social"
+    );
+
+    try {
+      const result = await response.json();
+      console.log(result);
+      return result;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+
+export const deleteCourseFunc = createAsyncThunk("deleteCourseFunc", async (userId) => {
+  try {
+    const response = await fetch(`https://65f2b05d034bdbecc765912d.mockapi.io/Social/${userId}`,
+       {
+      method: "DELETE"
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    throw error;
+  }
+});
+
+
+
+//update action
+export const editCourseFunc = createAsyncThunk(
+  "updateUser",
+  async (data, { rejectWithValue }) => {
+    console.log("updated data", data);
+    const response = await fetch(
+      `https://65f2b05d034bdbecc765912d.mockapi.io/Social/${data.id}`,
+     
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    try {
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const CourseSlice = createSlice({
+  name: "userDetail",
   initialState: {
-    data: [],
-    nextCourseId: 1 // Initialize the next course ID
+    users: [],
+    loading: false,
+    error: null,
+    searchData: [],
   },
 
   reducers: {
-    addCourseFunc: (state, action) => {
-      const { Title, Description, Category, Charges, Duration, Image } = action.payload;
+    searchUser: (state, action) => {
+      console.log(action.payload);
+      state.searchData = action.payload;
+    },
+  },
 
-      state.data.push({
-        id: state.nextCourseId, // Use the next course ID
-        Title,
-        Description,
-        Category,
-        Charges,
-        Duration,
-        Image,
+  extraReducers: (builder) => {
+    builder
+      .addCase(createUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users.push(action.payload);
+      })
+      .addCase(createUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+      })
+      .addCase(showUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(showUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = action.payload;
+      })
+      .addCase(showUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteCourseFunc.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteCourseFunc.fulfilled, (state, action) => {
+        state.loading = false;
+        const { id } = action.payload;
+        if (id) {
+          state.users = state.users.filter((ele) => ele.id !== id);
+        }
+      })
+      .addCase(deleteCourseFunc.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(editCourseFunc.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(editCourseFunc.fulfilled, (state, action) => {
+        state.loading = false;
+        state.users = state.users.map((ele) =>
+          ele.id === action.payload.id ? action.payload : ele
+        );
+      })
+      .addCase(editCourseFunc.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
       });
-
-      // Increment the next course ID for the next addition
-      state.nextCourseId++;
-    },
-
-    deleteCourseFunc: (state, action) => {
-      const idToDelete = action.payload;
-      state.data = state.data.filter((item) => item.id !== idToDelete);
-    },
-
-    editCourseFunc: (state, action) => {
-      const { id, updatedCourse } = action.payload;
-      const index = state.data.findIndex((item) => item.id === id);
-      if (index !== -1) {
-        state.data[index] = { ...updatedCourse, id };
-      }
-
-    },
   },
 });
 
-export const { addCourseFunc, deleteCourseFunc, editCourseFunc } = CourseSlice.actions;
-export default CourseSlice.reducer;
+export const { searchUser } = CourseSlice.actions;
 
+export default CourseSlice.reducer;

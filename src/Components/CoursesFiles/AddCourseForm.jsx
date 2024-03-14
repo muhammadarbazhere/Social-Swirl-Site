@@ -1,163 +1,144 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addCourseFunc } from '../CourseSlice';
+import { createUser } from '../CourseSlice';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/logo.jpg'
+import { toast } from 'react-toastify';
+import logo from '../../assets/logo.jpg';
 
-export default function AddCourseForm() {
-  const dispatch = useDispatch();
+function AddCourseForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({ title: '', description: '', category: '', duration: '' ,charges: '', image: '' });
 
-  const [formData, setFormData] = useState({
-    Title: '',
-    Description: '',
-    Category: '',
-    Charges: '',
-    Duration: '',
-    Image: '', 
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(addCourseFunc(formData));
-    navigate('/MyCourseList');
+  const handleChange = (e) => {
     setFormData({
-      Title: '',
-      Description: '',
-      Category: '',
-      Charges: '',
-      Duration: '',
-      Image: '',
+      ...formData,
+      [e.target.name]: e.target.value
     });
   };
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [id]: id === 'Charges' ? parseFloat(value) : value,
-    }));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    
+    try {
+         await dispatch(createUser(formData));
+      toast.success('Form submitted successfully!');
+      navigate('/MySecondHome');
+    } catch (error) {
+      toast.error('Error submitting the form. Please try again.');
+    }
   };
 
   return (
-    <div className="mx-auto mt-10 w-full md:w-2/3 font-[Chivo] lg:w-2/5">
-      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-
-        <div className=" w-full h-auto flex justify-center items-center rounded-md mb-2">
-        
-          <img src={logo} alt="Logo" className="mb-5 w-24 h-24" />
-
+    <div className="mx-auto  w-full md:w-2/3 lg:w-1/2">
+      <div className="bg-white shadow-md rounded font-[Chivo] px-8 pt-6 pb-8 mb-4">
+       
+        <div className=" flex justify-center rounded-md mb-0">
+          <img src={logo} alt="Logo" className="mb-5 h-28 w-28" />
         </div>
         <form onSubmit={handleSubmit} className="mx-auto">
           <div className="mb-4">
-            <label htmlFor="Title" className="block text-gray-500 text-sm font-bold mb-2">Course Title</label>
+            <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">Course Title</label>
             <input
-              required
-              id="Title"
               type="text"
-              placeholder='Course Title'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
-              value={formData.Title}
+              id="title"
+              name="title"
+              placeholder='Course Title ..*'
+              value={formData.title}
               onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="Description" className="block text-gray-500 text-sm font-bold mb-2">Course Description</label>
-            <input
-              required
-              id="Description"
-              type="text"
-              placeholder='Course Description'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
-              value={formData.Description}
+            <label htmlFor="description" className="block text-gray-700 text-sm font-bold mb-2">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder='Course Description ..*'
+              value={formData.description}
               onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
-          <div className="mb-4">
-  <label htmlFor="Category" className="block text-gray-500 text-sm font-bold mb-2">Course Category</label>
-  <select
-    required
-    id="Category"
-    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
-    value={formData.Category}
-    onChange={handleChange}
-  >
-    <option value="">Select a category</option>
-    <option value="Front-End Development">Front-End Development</option>
-    <option value="Back-End Development">Back-End Development</option>
-    <option value="Graphic Designing">Graphic Designing</option>
-    <option value="Social Media Marketing">Social Media Marketing</option>
-    <option value="Seo">Seo</option>
-    <option value="Human Resource">Human Resource</option>
-  </select>
-</div>
 
           <div className="mb-4">
-            <label htmlFor="Charges" className="block text-gray-500 text-sm font-bold mb-2">Course Charges</label>
+      <label htmlFor="category" className="block text-gray-700 text-sm font-bold mb-2">Category</label>
+      <select
+        id="category"
+        name="category"
+        value={formData.category}
+        onChange={handleChange}
+        required
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      >
+        <option value="">Select a category</option>
+        <option value="Front-End Development">Front-End Development</option>
+        <option value="Back-End Development">Back-End Development</option>
+        <option value="Social Media Marketing">Social Media Marketing</option>
+        <option value="SEO">SEO</option>
+        <option value="Human Resource">Human Resource</option>
+        <option value="Graphic Designing">Graphic Designing</option>
+      </select>
+    </div>
+
+
+          <div className="mb-4">
+            <label htmlFor="charges" className="block text-gray-700 text-sm font-bold mb-2">Charges</label>
             <input
-              required
-              id="Charges"
               type="number"
-              step="0.01"
-              placeholder='Course Charges'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
-              value={formData.Charges}
+              id="charges"
+              name="charges"
+              placeholder='Course Charges ..*'
+              value={formData.charges}
               onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+
+<div className="mb-4">
+            <label htmlFor="duration" className="block text-gray-700 text-sm font-bold mb-2">Duration</label>
+            <input
+              type="text"
+              id="duration"
+              name="duration"
+              placeholder='Course Duration ..*'
+              value={formData.duration}
+              onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
 
+
+
+
+          </div>
           <div className="mb-4">
-  <label htmlFor="Category" className="block text-gray-500 text-sm font-bold mb-2">Course Duration</label>
-  <select
-    required
-    id="Duration"
-    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
-    value={formData.Duration}
-    onChange={handleChange}
-  >
-    <option value="">Select</option>
-    <option value="30 days">30 days</option>
-    <option value="45 days">45 days</option>
-    <option value="65 days">65 days</option>
-    <option value="2 months">2 months</option>
-    <option value="3 months">3 months</option>
-    <option value="4 months">4 months</option>
-    <option value="5 months">5 months</option>
-    <option value="6 months">6 months</option>
-    <option value="7 months">7 months</option>
-    <option value="8 months">8 months</option>
-    <option value="10 months">10 months</option>
-    <option value="1 year">1 year</option>
-    <option value="2 year">2 years</option>
-    <option value="4 years">4 years</option>
-  </select>
-</div>
-
-
-
-
-
-
-<div className="mb-6">
-            <label htmlFor="Image" className="block text-gray-500 text-sm font-bold mb-2">Course Link</label>
+            <label htmlFor="image" className="block text-gray-700 text-sm font-bold mb-2">Course Link</label>
             <input
-              id="Image"
               type="text"
-              placeholder='Paste course link here...'
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
-              value={formData.Image}
+              id="image"
+              name="image"
+              placeholder='Paste Your Course Link Here..*'
+              value={formData.image}
               onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            {formData.Image && (
-              <div className="mt-2">
-                <img src={formData.Image} alt="Course Image" className="max-w-full h-auto" />
+          </div>
+          {formData.image && (
+              <div className="mt-3">
+                <img src={formData.image} alt="Preview" className="object-contain h-40 w-full my-2" />
               </div>
             )}
-          </div>
-           <button
+
+          <button
             type="submit"
-            disabled={!formData.Title || !formData.Description || !formData.Category || !formData.Charges || !formData.Duration || !formData.Image}
-            className={`bg-blue-500 ${(!formData.Title || !formData.Description || !formData.Category || !formData.Charges || !formData.Duration || !formData.Image) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'} w-full rounded-xl text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline`}
+            disabled={!formData.title || !formData.description || !formData.category || !formData.charges || !formData.image}
+            className={`bg-blue-500 ${(!formData.title || !formData.description || !formData.category || !formData.charges || !formData.image) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'} w-full rounded-xl text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline`}
           >
             Add Course
           </button>
@@ -166,3 +147,5 @@ export default function AddCourseForm() {
     </div>
   );
 }
+
+export default AddCourseForm;

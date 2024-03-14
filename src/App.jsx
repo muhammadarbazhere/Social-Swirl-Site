@@ -29,6 +29,7 @@ import Footer from './Pages/Footer/Footer'
 import Login from './Dashboard/MainNavbar/Files/UserParts/Files/Login';
 import Register from './Dashboard/MainNavbar/Files/UserParts/Files/Register';
 import Forget from './Dashboard/MainNavbar/Files/UserParts/Files/Forget';
+import EditCourse from './Components/CoursesFiles/EditCourse';
 
 function App() {
   return (
@@ -68,6 +69,8 @@ function AppRoutes() {
         <Route path="/MyAddJobs" element={<AddJobs />} />
         <Route path="/MyJobsList" element={<JobsList />} />
 
+        <Route path="/MyEdit/:id" element={<EditCourse />} />
+
         {/* E-LEARNING ROUTES FROM SECOND NAVBAR */}
         <Route path="/MyFrontend" element={<Frontend />} />
         <Route path="/MyBackend" element={<Backend />} />
@@ -87,7 +90,7 @@ function AppRoutes() {
 
       </Routes>
 
-      {isDashboardRoute() ? null : isMyRoute() ? <FooterDashboard /> :  <Footer />}
+      {/* {isDashboardRoute() ? null : isMyRoute() ? <FooterDashboard /> :  <Footer />} */}
 
 
     </>
