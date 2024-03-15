@@ -32,7 +32,7 @@ function Avatar() {
       <p
         id="dropdownHoverButton"
         onClick={openDropdown}
-        className="text-gray-600 lg:text-white  cursor-pointer font-medium rounded-lg text-lg px-1 py-4 text-center inline-flex items-center gap-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="text-gray-600 lg:text-white  cursor-pointer font-medium rounded-lg text-lg px-1 py-0 text-center inline-flex items-center gap-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
       >
         <div className='w-full h-full'>
@@ -40,8 +40,8 @@ function Avatar() {
         </div>
 
         <p className='flex items-center hover:text-gray-300  hover:transform  transition-all duration-300 ease-in-out'>
-          <h1 className=''>Muhammad</h1>
-          <span><RiArrowDropDownLine size={20}/></span>   
+          {/* <h1 className=''>Muhammad</h1> */}
+          {/* <span><RiArrowDropDownLine size={20}/></span>    */}
         </p>
        
       </p>

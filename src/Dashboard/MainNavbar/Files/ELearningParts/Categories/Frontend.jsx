@@ -31,7 +31,7 @@ function Frontend() {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className="  font-[Chivo] py-10 px-10">
+        <div className="  font-[Chivo] bg-blue-100 py-10 px-10">
             <h1 className="text-3xl font-bold text-gray-800 text-center">Front-End Courses</h1>
             <div className='flex justify-end py-4 flex-row'>
                 <Link to="/MyAddCourse" className="bg-red-400 text-white px-4 py-2 rounded-md hover:bg-black   flex items-center">

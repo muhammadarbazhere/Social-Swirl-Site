@@ -51,7 +51,7 @@ function Login() {
 
 
   return (
-    <div className="flex justify-center h-full items-center bg-blue-100 py-28">
+    <div className="flex justify-center h-full items-center bg-blue-100 pt-10 pb-20">
       <div className=" rounded-lg p-8 bg-white font-[Chivo]" style={{ width: '500px' }}>
        
 <div className='items-center flex justify-center pb-8'>

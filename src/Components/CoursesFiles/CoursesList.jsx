@@ -9,9 +9,9 @@ import { RiEditLine } from "react-icons/ri";
 import { FaChevronLeft, FaChevronRight, FaRegTrashAlt } from 'react-icons/fa';
 import { FaArrowTrendUp } from 'react-icons/fa6';
 
-function Frontend() {
+function Courses() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(12);
+    const [postsPerPage] = useState(8);
 
     const dispatch = useDispatch();
     const { users, loading, error } = useSelector(state => state.app);
@@ -113,4 +113,4 @@ function Frontend() {
     );
 }
 
-export default Frontend;
+export default Courses;

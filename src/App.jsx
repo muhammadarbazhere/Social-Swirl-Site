@@ -30,6 +30,12 @@ import Login from './Dashboard/MainNavbar/Files/UserParts/Files/Login';
 import Register from './Dashboard/MainNavbar/Files/UserParts/Files/Register';
 import Forget from './Dashboard/MainNavbar/Files/UserParts/Files/Forget';
 import EditCourse from './Components/CoursesFiles/EditCourse';
+import Admin from './Pages/Admin/Admin';
+import AdminPanel from './Pages/Admin/AdminPanel';
+import Welcome from './Pages/Admin/Welcome';
+import EditJobs from './Components/JobsInternships/EditJobsInternship';
+import EditJobInternshipForm from './Components/JobsInternships/EditJobsInternship';
+import EditJobsInternship from './Components/JobsInternships/EditJobsInternship';
 
 function App() {
   return (
@@ -52,7 +58,9 @@ function AppRoutes() {
 
   return (
     <>
-      {isDashboardRoute() ? <DashboardMain/> : isMyRoute() ? <SecondNavbar /> : <Navbar />}
+      {isDashboardRoute() ? <DashboardMain/>  : <Navbar />}
+      {/* <Navbar /> */}
+      {isMyRoute() ? <AdminPanel /> : null}
 
       <Routes>
         {/* APP ROUTES */}
@@ -62,6 +70,11 @@ function AppRoutes() {
         <Route path="/enroll" element={<EnrollNow />} />
         <Route path="/form" element={<Enrollmentform />} />
 
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/adminPanel" element={<AdminPanel />} />
+        <Route path="/MyWelcome" element={<Welcome />} />
+
+
         {/* ROUTES FOR SECOND NAVBAR */}
         <Route path="/MySecondHome" element={<MySecondHome />} /> 
         <Route path="/MyAddCourse" element={<AddCourse />} />
@@ -70,6 +83,8 @@ function AppRoutes() {
         <Route path="/MyJobsList" element={<JobsList />} />
 
         <Route path="/MyEdit/:id" element={<EditCourse />} />
+        <Route path="/MyeditJobs/:id" element={<EditJobsInternship/>} />
+        {/* <Route path="/MyEditJobs/:id" element={<EditJobs />} /> */}
 
         {/* E-LEARNING ROUTES FROM SECOND NAVBAR */}
         <Route path="/MyFrontend" element={<Frontend />} />
@@ -92,7 +107,7 @@ function AppRoutes() {
 
       {/* {isDashboardRoute() ? null : isMyRoute() ? <FooterDashboard /> :  <Footer />} */}
 
-
+      <Footer />
     </>
   );
 }

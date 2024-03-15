@@ -29,7 +29,7 @@ function Forget() {
   };
 
   return (
-    <div className="flex justify-center bg-blue-100 h-screen items-center font-[Chivo]">
+    <div className="flex justify-center bg-blue-100 h-full pt-10 pb-20 items-center font-[Chivo]">
       <div className="rounded-lg p-8 items-center bg-white" style={{ width: '500px' }}>
       
       <div className=' items-center flex justify-center pb-8'>

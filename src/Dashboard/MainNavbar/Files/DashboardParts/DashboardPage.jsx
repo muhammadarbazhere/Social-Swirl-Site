@@ -19,10 +19,10 @@ function DashboardPage() {
         id="dropdownHoverButton"
         onMouseEnter={openDropdown}
         onMouseLeave={closeDropdown}
-        className="lg:text-white text-black cursor-pointer font-medium rounded-lg text-lg px-1 lg:py-6 text-center inline-flex items-center gap-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
+        className=" text-gray-800 cursor-pointer font-medium rounded-lg text-lg px-1 my-0 py-0 text-center inline-flex items-center gap-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
         type="button"
       >
-        <Link to={'/MySecondHome'} className='flex gap-2 items-center'>
+        <Link to={'/MyWelcome'} className='flex gap-2 items-center'>
          <MdDashboardCustomize size={20} className=''/>
         <h1 className=''>Dashboard</h1>
         </Link>
@@ -34,23 +34,23 @@ function DashboardPage() {
         id="dropdownHover"
         onMouseEnter={openDropdown}
         onMouseLeave={closeDropdown}
-        className={`absolute top-full left-0 z-10 ${isDropdownOpen ? '' : 'hidden'}   divide-y divide-gray-100  bg-white rounded-lg shadow w-72 dark:bg-gray-700`}
+        className={`absolute top-full left-0 z-10 ${isDropdownOpen ? '' : 'hidden'}   divide-y divide-gray-100  bg-white rounded-lg shadow w-60 dark:bg-gray-700`}
       >
-        <ul className="py-1 text-md text-blue-400 font-[Chivo] dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+        <ul className="py-1 text-md text-gray-700 font-[Chivo] dark:text-gray-200" aria-labelledby="dropdownHoverButton">
           <li>
-            <a href="MyAddJobs" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out">Add Job/Internship</a>
+            <a href="MyAddJobs" className="block px-4 py-2 hover:bg-blue-400 hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out">Add Job/Internship</a>
           </li>
           <hr />
           <li>
-            <a href="MyAddCourse" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out">Add New Course</a>
+            <a href="MyAddCourse" className="block px-4 py-2 hover:bg-blue-400 hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out">Add New Course</a>
           </li>
           <hr />
           <li>
-            <a href="MyJobsList" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out">Jobs /Internship List</a>
+            <a href="MyJobsList" className="block px-4 py-2 hover:bg-blue-400 hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out">Jobs /Internship List</a>
           </li>
           <hr />
           <li>
-            <a href="MyCourseList" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out">Courses List</a>
+            <a href="MyCourseList" className="block px-4 py-2 hover:bg-blue-400 hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out">Courses List</a>
           </li>
         </ul>
       </div>

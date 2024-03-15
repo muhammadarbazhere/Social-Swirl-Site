@@ -65,7 +65,7 @@ function Register() {
 
   return (
     <div className='bg-slate-200 p-1'>
-      <div className="flex justify-center h-screen items-center my-36">
+      <div className="flex justify-center h-full items-center pt-10 pb-20">
         <div className="bg-white rounded-lg p-10 shadow-md" style={{ width: '600px' }}>
         
 <div className='items-center flex justify-center'>

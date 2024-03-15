@@ -1,119 +1,98 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { autoCloseJobs, deleteJobInternship } from '../JobsInternshipSlice';
-import { GoTrash } from "react-icons/go";
-import { MdAddToPhotos, MdModeEdit } from "react-icons/md";
-import EditJobInternship from './EditJobsInternship';
-import { useNavigate } from 'react-router-dom';
+import { showJobsInternships, deleteJobInternship } from '../JobsInternshipSlice';
+import { MdDelete, MdModeEdit } from 'react-icons/md';
+import { IoMdSend } from "react-icons/io";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Internships = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const JobsInternshipsData = useSelector(state => state.JobInternshipStore.data);
-
-    const onlyInternships = JobsInternshipsData.filter(
-        (job) => job.jobOrInternship === "internship"
-    );
-
-    const [editCourseId, setEditCourseId] = useState(null);
-
-    const handleDelete = (id) => {
-        console.log("Deleting course with ID:", id);
-        dispatch(deleteJobInternship(id));
-    };
-
-    const handleEdit = (id) => {
-        setEditCourseId(id);
-    };
-
-    const handleCloseEdit = () => {
-        setEditCourseId(null);
-    };
-
+    const { data: jobs, loading, error } = useSelector(state => state.jobsInternshipsStore);
+    
     useEffect(() => {
-        const interval = setInterval(() => {
-            dispatch(autoCloseJobs());
-        }, 60000); // Check every minute if jobs need to be closed
-
-        return () => clearInterval(interval);
+        dispatch(showJobsInternships());
     }, [dispatch]);
 
+    const filteredJobs = jobs ? jobs.filter(item => item.jobOrInternship === 'internship') : [];
+
+
     const formatDate = (dateString) => {
+        const timestampInMilliseconds = dateString * 1000;
+    
+        const date = new Date(timestampInMilliseconds);
+    
+        // Get the year, month, and day
+        const year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        month = month < 10 ? '0' + month : month; 
+
+        let day = date.getDate();
+        day = day < 10 ? '0' + day : day; 
+    
+        // Format the date as 'YYYY-MM-DD'
+        const formattedDate = `${year}-${month}-${day}`;
+    
+        // Get the current date
         const currentDate = new Date().toISOString().slice(0, 10);
-        if (dateString === currentDate) {
+    
+        // Check if the date is today or yesterday
+        if (formattedDate === currentDate) {
             return 'Today';
-        } else if (dateString === new Date(Date.now() - 864e5).toISOString().slice(0, 10)) {
+        } else if (formattedDate === new Date(Date.now() - 864e5).toISOString().slice(0, 10)) {
             return 'Yesterday';
         } else {
-            return dateString;
+            return formattedDate;
         }
     };
 
-    const handleAdd = () => {
-        navigate("/MyAddJobs");
-      };
-    
+   
 
     return (
-        <div className="font-[Chivo] h-full w-full ">
-            {editCourseId && (
-                <EditJobInternship jobId={editCourseId} onClose={handleCloseEdit} />
-            )}
-
-            <h1 className="py-10 text-center text-[#5F9BCE] text-4xl font-semibold">Internship Table</h1>
-
-            {onlyInternships.length === 0 ? (
-                <div className="text-center items-center flex flex-col justify-center text-gray-500">
-                    <p>No internships added yet.</p>
-
-                    <button onClick={handleAdd} className="border-2 border-red-400 hover:border-black rounded-full px-4 py-2 bg-red-400 text-white hover:bg-black gap-2 flex items-center justify-center hover:text-blacj mt-4">
-                      <div>  Add Internships</div>
-                        <div> <MdAddToPhotos size={20} /></div>
-                      
-                    </button>
+        <div className="font-[Chivo] h-full w-full">
+            {loading && (
+                <div className="flex items-center justify-center mt-10">
+                    <div className="w-6 h-6 mr-3 border-t-2 border-b-2 border-gray-500 rounded-full animate-spin"></div>
+                    <p className="text-secondary">Loading...</p>
                 </div>
-            ) : (
-                <table className="w-full rounded-lg">
-                    <thead>
-                        <tr>
-                            <th className=''>
-                                {/* <input type="checkbox" /> */}
-                            </th>
-                            <th className="text-gray-600 text-left px-8 py-4">JOB TITLE</th>
-                            <th className="text-gray-600 text-left w-80 px-8 py-4">DESCRIPTION</th>
-                            <th className="text-left text-gray-600 px-8 py-4">JOB TYPE</th>
-                            <th className="text-gray-600 text-left px-8 py-4">JOB ISSUE DATE</th>
-                            <th className="text-left text-gray-600 px-8 py-4">JOB STATUS</th>
-                            <th className="text-left text-gray-600 px-8 py-4"></th>
-                        </tr>
-                    </thead>
-                    <tbody className=''>
-                        {onlyInternships.map((item, id) => (
-                            <tr key={id} className='bg-red-300  ' style={{ marginBottom: '10px' }}>
-                                <td className='bg-white  px-4'>
-                                    <input type="checkbox" />
-                                </td>
-                                <td className="text-gray-500 bg-white px-8 py-4">{item.title}</td>
-                                <td className="text-gray-500 bg-white px-8 py-4">{item.description}</td>
-                                <td className="text-gray-500 bg-white px-8 py-4">{item.type}</td>
-                                <td className="text-gray-500 bg-white px-8 py-4">{formatDate(item.issue)}</td>
-                                <td className="text-green-400 bg-white px-8 py-4">{item.status}</td>
-                                <td className="text-gray-500 bg-white px-8 py-4">
-                                    <button onClick={() => handleEdit(item.id)} className="border-2 border-blue-400 rounded-full px-1 py-1 bg-blue-400 text-white hover:bg-white hover:text-blue-400 mr-2">
-                                        <MdModeEdit />
-                                    </button>
-                                    <button onClick={() => handleDelete(item.id)} className="border-2 border-blue-400 rounded-full px-1 py-1 bg-blue-400 text-white hover:bg-white hover:text-blue-400">
-                                        <GoTrash />
-                                    </button>
-                                </td>
+            )}
+            {error && (
+                <p className="text-center text-red-500 mt-3">
+                    <span className="font-bold">Error:</span> {error}
+                </p>
+            )}
+            {!loading && !error && filteredJobs.length === 0 && (
+                <p className="text-center mt-3">No internships available.</p>
+            )}
+            {!loading && !error && filteredJobs.length > 0 && (
+                <>
+                    <h1 className="py-10 text-center text-[#5F9BCE] text-4xl font-bold">Internships</h1>
+                    <table className="min-w-full bg-white border rounded-lg">
+                        <thead>
+                            <tr>
+                                <th className="border text-white bg-[#5F9BCE] text-left px-8 py-4">JOB TITLE</th>
+                                <th className="border text-white bg-[#5F9BCE] text-left w-80 px-8 py-4">DESCRIPTION</th>
+                                <th className="border text-left bg-[#5F9BCE] text-white px-8 py-4">Issue Date</th>
+                                <th className="border text-left bg-[#5F9BCE] text-white px-8 py-4">Status</th>
+                                
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {filteredJobs.map((item) => (
+                                <tr key={item.id}>
+                                    <td className="border text-gray-500 px-8 py-4">{item.title}</td>
+                                    <td className="border text-gray-500 px-8 py-4">{item.description}</td>
+                                    <td className="border text-gray-500 px-8 py-4">{formatDate(item.issue)}</td>
+                                    <td className="border 0 text-green-400 px-8 py-4">{(item.status)}</td>
+                                    
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </>
             )}
         </div>
     );
-}
+};
 
 export default Internships;

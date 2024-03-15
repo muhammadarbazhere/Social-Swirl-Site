@@ -22,7 +22,7 @@ function User() {
         id="dropdownHoverButton"
         onMouseEnter={openDropdown}
         onMouseLeave={closeDropdown}
-        className="lg:text-white text-black  cursor-pointer font-medium rounded-lg gap-2  font-[Chivo] text-md px-1 lg:py-6 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
+        className="text-gray-800 cursor-pointer font-medium rounded-lg gap-2  font-[Chivo] text-md px-1 py-0 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
         type="button"
       >
         <MdPerson size={20} />
@@ -36,16 +36,16 @@ function User() {
         onMouseLeave={closeDropdown}
         className={`absolute top-full left-0 z-10 ${
           isDropdownOpen ? "" : "hidden"
-        }  bg-white divide-y divide-gray-100 rounded-lg shadow w-64 dark:bg-gray-700`}
+        }  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
       >
         <ul
-          className="py-1 text-md text-blue-400 font-[Chivo] dark:text-gray-200"
+          className="py-1 text-md text-gray-700 font-[Chivo] dark:text-gray-200"
           aria-labelledby="dropdownHoverButton"
         >
           <li>
             <a
               href="MyLogin"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
+              className="block px-4 py-2 hover:bg-blue-400 hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
             >
            Login
             </a>
@@ -54,7 +54,7 @@ function User() {
           <li>
             <a
               href="MyRegister"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
+              className="block px-4 py-2 hover:bg-blue-400 hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
             >
              Register
             </a>
@@ -63,7 +63,7 @@ function User() {
           <li>
             <a
               href="MyForgetPassword"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
+              className="block px-4 py-2 hover:bg-blue-400 hover:text-white hover:transform hover:-translate-y-1 transition-all duration-300 ease-in-out"
             >
               Forget Password
             </a>

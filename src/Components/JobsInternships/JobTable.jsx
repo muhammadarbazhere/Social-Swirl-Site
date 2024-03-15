@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { autoCloseJobs, deleteJobInternship,  } from '../JobsInternshipSlice';
+import { deleteJobInternship,  } from '../JobsInternshipSlice';
 import { GoTrash } from "react-icons/go";
 import { MdModeEdit } from "react-icons/md";
 import EditJobInternship from './EditJobsInternship';
@@ -25,13 +25,7 @@ const JobTable = () => {
     };
      
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            dispatch(autoCloseJobs());
-        }, 60000); // Check every minute if jobs need to be closed
-
-        return () => clearInterval(interval);
-    }, [dispatch]);
+  
 
     const formatDate = (dateString) => {
         const currentDate = new Date().toISOString().slice(0, 10);
