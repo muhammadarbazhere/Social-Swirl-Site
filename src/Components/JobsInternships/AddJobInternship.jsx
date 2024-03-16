@@ -36,7 +36,7 @@ function AddJobInternshipForm() {
   
 
   return (
-    <div className="mx-auto mt-4 w-full md:w-2/3 font-[Chivo] lg:w-2/5">
+    <div className="mx-auto mt-0 overflow-hidden sm:mt-4 w-full md:w-2/3 font-[Chivo] lg:w-2/5">
       <div className="bg-white shadow-md rounded px-8 pb-8 mb-4">
         <div className='w-full items-center py-6 flex justify-center'>
           <img src={logo} alt="Logo" className='w-24 h-24'/>

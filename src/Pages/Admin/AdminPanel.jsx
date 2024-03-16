@@ -9,18 +9,41 @@ import Welcome from './Welcome'
 
 function AdminPanel() {
   return (
-    <div className='bg-blue-100 h-full pb-6 pt-24 w-full items-center justify-center flex flex-col'>
+    <div className='bg-blue-100 w-full h-full pb-6 pt-24 w-full items-center justify-center flex '>
       
 
 
-<div className="Navbar space-x-4 py-0  flex   items-center justify-center">
+<div className="space-y-2 sm:space-y-0 hidden sm:block sm:space-x-4 py-0  sm:flex   items-center justify-center">
           <DashboardPage />
           <Career />
           <ELearning />
           <User />
+          
          <Avatar/>
         </div>
 
+        <div className="block sm:hidden  py-0  px-4  items-center justify-center">
+
+<div className=' items-center py-3 justify-center flex'>
+        <Avatar/>
+        </div>
+
+        <div className='flex  space-x-4 items-center  '>
+
+          <div className='flex flex-wrap gap-3'>
+          <DashboardPage />
+          <Career />
+          </div>
+
+          <div className='flex flex-wrap gap-3'>
+          <ELearning />
+          <User />
+          </div>
+
+
+          </div>
+        
+        </div>
 
 
 

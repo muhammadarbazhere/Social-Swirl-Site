@@ -36,7 +36,7 @@ function Avatar() {
         type="button"
       >
         <div className='w-full h-full'>
-        <img className='w-10 h-10 rounded-full' src={Admin} alt="Admin" />
+        <img className='sm:w-10 w-16 sm:h-10 h-16 rounded-full' src={Admin} alt="Admin" />
         </div>
 
         <p className='flex items-center hover:text-gray-300  hover:transform  transition-all duration-300 ease-in-out'>
@@ -49,7 +49,7 @@ function Avatar() {
       {/* Dropdown menu */}
       <div
         id="dropdownHover"
-        className={`absolute top-full right-0 z-10 ${isDropdownOpen ? '' : 'hidden'}  bg-white divide-y divide-gray-100 rounded-lg shadow w-80 dark:bg-gray-700`}
+        className={`absolute top-full -left-28 sm:right-0   z-10 ${isDropdownOpen ? '' : 'hidden'}  bg-white divide-y divide-gray-100 rounded-lg shadow w-56 lg:w-80 dark:bg-gray-700`}
       >
         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
 
@@ -62,7 +62,7 @@ function Avatar() {
             </span>
             <span className=' flex text-md flex-col justify-center font-bold'>
             <h1 >Muhammad Arbaz</h1>
-            <p className='text-sm text-gray-400'>muhammad@gmail.com</p>
+            <p className='text-sm text-gray-400'>muhammad@gmail</p>
             </span>
           </a>
         </li>

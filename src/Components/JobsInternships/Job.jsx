@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { showJobsInternships, deleteJobInternship } from '../JobsInternshipSlice';
-import { MdDelete, MdModeEdit } from 'react-icons/md';
-import { IoMdSend } from "react-icons/io";
-import { Link, useNavigate } from 'react-router-dom';
+import {  showJobsInternships } from '../JobsInternshipSlice';
 
 const Job = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { data: jobs, loading, error } = useSelector(state => state.jobsInternshipsStore);
     
     useEffect(() => {
@@ -46,10 +42,8 @@ const Job = () => {
         }
     };
 
-   
-
     return (
-        <div className="font-[Chivo] h-full w-full">
+        <div className="font-[Chivo] h-full w-full overflow-hidden">
             {loading && (
                 <div className="flex items-center justify-center mt-10">
                     <div className="w-6 h-6 mr-3 border-t-2 border-b-2 border-gray-500 rounded-full animate-spin"></div>
@@ -61,31 +55,56 @@ const Job = () => {
                     <span className="font-bold">Error:</span> {error}
                 </p>
             )}
-            {!loading && !error && filteredJobs.length === 0 && (
-                <p className="text-center mt-3">No internships available.</p>
+            {!loading && !error && jobs.length === 0 && (
+                <p className="text-center mt-3">No jobs available.</p>
             )}
-            {!loading && !error && filteredJobs.length > 0 && (
+            {!loading && !error && jobs.length > 0 && (
                 <>
-                    <h1 className="py-10 text-center text-[#5F9BCE] text-4xl font-bold">Internships</h1>
-                    <table className="min-w-full bg-white border rounded-lg">
-                        <thead>
+                   
+                    <table className="w-full md:min-w-full   rounded-lg">
+                        <thead className=''>
                             <tr>
-                                <th className="border text-white bg-[#5F9BCE] text-left px-8 py-4">JOB TITLE</th>
-                                <th className="border text-white bg-[#5F9BCE] text-left w-80 px-8 py-4">DESCRIPTION</th>
-                                <th className="border text-left bg-[#5F9BCE] text-white px-8 py-4">Issue Date</th>
-                                <th className="border text-left bg-[#5F9BCE] text-white px-8 py-4">Status</th>
+                                <th className=''>
+
+                                </th>
+                                <th className="  text-left lg:px-2 px-1 py-4 text-xs sm:text-base text-gray-700 ">
+                                <span className='block sm:hidden'>TITLE</span>
+                                    <span className='hidden sm:block'> JOB TITLE</span>
+                                </th>
+                                <th className="  text-left  lg:px-2 px-2 py-4 text-xs sm:text-base text-gray-700">DESCRIPTION</th>
+
+                                <th className="text-left lg:px-2 px-1 py-4 text-xs sm:text-base text-gray-700 ">
+                                    <span className='block sm:hidden'>ISSUE</span>
+                                    <span className='hidden sm:block'> ISSUE DATE</span>
+                                    </th>
+                                <th className=" text-left lg:px-2 px-1 py-4 text-xs sm:text-base text-gray-700 ">
                                 
+                                <span className='block sm:hidden'>STATUS</span>
+                                    <span className='hidden sm:block'>JOB STATUS</span>
+                                </th>
+
                             </tr>
                         </thead>
-                        <tbody>
-                            {filteredJobs.map((item) => (
-                                <tr key={item.id}>
-                                    <td className="border text-gray-500 px-8 py-4">{item.title}</td>
-                                    <td className="border text-gray-500 px-8 py-4">{item.description}</td>
-                                    <td className="border text-gray-500 px-8 py-4">{formatDate(item.issue)}</td>
-                                    <td className="border 0 text-green-400 px-8 py-4">{(item.status)}</td>
-                                    
+                        <tbody className='bg-white'>
+                            {filteredJobs.map((item, id) => (
+                               <React.Fragment key={id} >
+                                <tr >
+                                    <td className='px-4 '>
+                                        <input type="checkbox" />
+                                    </td>
+                                    <td className="  text-left text-gray-500 lg:px-8 px-1 py-4 text-sm sm:text-base">{item.title}</td>
+                                    <td className=" text-left  text-gray-500 lg:px-8 px-1 py-4 text-sm sm:text-base">{item.description}</td>
+                                    <td className=" text-left  text-gray-500 lg:px-8 px-1  py-4 text-sm sm:text-base">{formatDate(item.issue)}</td>
+                                   
+                                    <td className="text-left text-green-500  lg:px-8 px-1 py-4 text-sm sm:text-base">{item.status}</td>
+                                  
                                 </tr>
+
+                              
+
+                                </React.Fragment>
+
+
                             ))}
                         </tbody>
                     </table>
@@ -95,4 +114,4 @@ const Job = () => {
     );
 };
 
-export default Job
+export default Job;

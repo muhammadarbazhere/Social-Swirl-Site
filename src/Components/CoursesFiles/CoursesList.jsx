@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { showUser, deleteCourseFunc } from '../../Components/CourseSlice';
+import { showUser, deleteCourseFunc } from '../../Components/CourseSlice' 
 import { Link } from 'react-router-dom';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { ToastContainer } from 'react-toastify';
@@ -16,8 +16,6 @@ function Courses() {
     const dispatch = useDispatch();
     const { users, loading, error } = useSelector(state => state.app);
     
-   
-
     useEffect(() => {
         dispatch(showUser());
     }, [dispatch]);
@@ -25,19 +23,15 @@ function Courses() {
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentUsers = users.slice(indexOfFirstPost, indexOfLastPost); // Use frontEndCourses instead of users
+    const currentUsers = users.slice(indexOfFirstPost, indexOfLastPost); 
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className="  font-[Chivo] py-10 px-10">
-            <h1 className="text-3xl font-bold text-gray-800 text-center">All Courses</h1>
-            <div className='flex justify-end py-4 flex-row'>
-                <Link to="/MyAddCourse" className="bg-red-400 text-white px-4 py-2 rounded-md hover:bg-black   flex items-center">
-                    Add Courses <IoIosAddCircleOutline size={24} className="ml-2" />
-                </Link>
-            </div>
+        <div className="  font-[Chivo] bg-blue-100 py-10 px-4 lg:px-6 xl:px-20">
+            <h1 className="text-2xl sm:text-3xl font-bold pb-12 text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-center">Our Courses</h1>
+           
             {loading && (<div className="flex items-center justify-center mt-10"><div className="w-6 h-6 mr-3 border-t-2 border-b-2 border-gray-500 rounded-full animate-spin"></div><p className="text-secondary">Loading...</p></div>)}
          
             {error && (<p className="text-center text-red-500 mt-3"><span className="font-bold">Error:</span> {error}</p>)}
@@ -48,9 +42,9 @@ function Courses() {
                     <p className='text-lg text-center pt-12 text-gray-700 font-bold'>No courses avalaible</p>
                 </div>
             ) : (
-                <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  mt-3">
+                <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6  my-3">
                     {currentUsers.map(user => (
-                        <div key={user.id} className="max-w-sm rounded-md overflow-hidden bg-white border-2 border-white shadow-lg">
+                        <div key={user.id} className="w-full sm:max-w-sm rounded-md overflow-hidden bg-white mb-6 border-2 border-white shadow-lg">
                             <img src={user.image} className="w-full h-64 object-cover" alt={user.title} />
                             <div className="px-3 py-2">
                                 <div className="font-bold text-gray-800 text-xl mb-0">{user.title}</div>
@@ -70,10 +64,7 @@ function Courses() {
 
                                     </div>
                                 
-                            <div className=" flex justify-end gap-3 px-3 py-2">
-                                <Link to={`/MyEdit/${user.id}`} className="text-[#5F9BCE] border-2 border-[#5F9BCE] hover:text-white rounded-full p-2 hover:bg-[#5F9BCE] focus:outline-none"> <RiEditLine size={22} /></Link>
-                                <button onClick={() => dispatch(deleteCourseFunc(user.id))} className="text-[#5F9BCE] border-2 border-[#5F9BCE] hover:text-white rounded-full p-2 hover:bg-[#5F9BCE] focus:outline-none"> <FaRegTrashAlt size={20} /></button>
-                            </div>
+                          
                             
                         </div>
                     ))}
@@ -101,7 +92,7 @@ function Courses() {
                 <button
                     className="mx-1 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none"
                     onClick={() =>
-                        setCurrentPage(currentPage === Math.ceil(frontEndCourses.length / postsPerPage) ? currentPage : currentPage + 1)
+                        setCurrentPage(currentPage === Math.ceil(users.length / postsPerPage) ? currentPage : currentPage + 1)
                     }
                     disabled={currentPage === Math.ceil(users.length / postsPerPage)}
                 >

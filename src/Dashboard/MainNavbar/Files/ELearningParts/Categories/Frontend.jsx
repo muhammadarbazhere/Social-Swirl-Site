@@ -11,7 +11,7 @@ import { FaArrowTrendUp } from 'react-icons/fa6';
 
 function Frontend() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(4);
+    const [postsPerPage] = useState(8);
 
     const dispatch = useDispatch();
     const { users, loading, error } = useSelector(state => state.app);
@@ -31,10 +31,10 @@ function Frontend() {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className="  font-[Chivo] bg-blue-100 py-10 px-10">
-            <h1 className="text-3xl font-bold text-gray-800 text-center">Front-End Courses</h1>
+        <div className="  font-[Chivo] bg-blue-100 py-10 px-6 sm:px-10 lg:px-24">
+            <h1 className="text-2xl sm:text-3xl font-bold  text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-center">Front-End Courses</h1>
             <div className='flex justify-end py-4 flex-row'>
-                <Link to="/MyAddCourse" className="bg-red-400 text-white px-4 py-2 rounded-md hover:bg-black   flex items-center">
+                <Link to="/MyAddCourse" className="bg-white text-[#5F9BCE] px-4 py-2 rounded-md border-2  border-[#5F9BCE] hover:bg-[#5F9BCE] hover:text-white duration-1000 flex items-center">
                     Add Courses <IoIosAddCircleOutline size={24} className="ml-2" />
                 </Link>
             </div>
@@ -48,9 +48,9 @@ function Frontend() {
                     <p className='text-lg text-center pt-12 text-gray-700 font-bold'>No frontend courses avalaible</p>
                 </div>
             ) : (
-                <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  mt-3">
+                <div className="grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6  my-3">
                     {currentUsers.map(user => (
-                        <div key={user.id} className="max-w-sm rounded-md overflow-hidden bg-white border-2 border-white shadow-lg">
+                        <div key={user.id} className="w-full sm:max-w-sm rounded-md overflow-hidden bg-white mb-6 border-2 border-white shadow-lg">
                             <img src={user.image} className="w-full h-64 object-cover" alt={user.title} />
                             <div className="px-3 py-2">
                                 <div className="font-bold text-gray-800 text-xl mb-0">{user.title}</div>

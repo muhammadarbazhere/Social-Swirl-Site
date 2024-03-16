@@ -13,7 +13,7 @@ function CourseList() {
 
   return (
 
-    <div className='flex w-full h-full flex-col pb-6 px-10 font-[Chivo] bg-blue-100'>
+    <div className='flex w-full h-full flex-col pb-6 px-0 sm:px-2 md:px-10 lg:px-24 font-[Chivo] bg-blue-100'>
 
 <div className='flex'>
       {/* <h1 className="w-full h-28 text-gray-500 text-md flex items-center">
@@ -32,7 +32,7 @@ function CourseList() {
       </div>
     
 
-<CoursesList/>
+<CoursesTable/>
     </div>
 
   );

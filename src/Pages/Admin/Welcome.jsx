@@ -24,7 +24,7 @@ function Welcome() {
       <div className=' text-blue-400 flex items-center justify-center'>
         <h1 
           id='welcome' 
-          className={`text-5xl  welcome-animation ${isVisible ? 'opacity-100' : 'opacity-0'}`} 
+          className={`sm:text-5xl text-3xl welcome-animation ${isVisible ? 'opacity-100' : 'opacity-0'}`} 
           style={{ transition: 'opacity 1s ease-in-out' }}
         >
           {name}

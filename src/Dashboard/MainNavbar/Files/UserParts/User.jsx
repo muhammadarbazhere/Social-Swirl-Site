@@ -34,7 +34,7 @@ function User() {
         id="dropdownHover"
         onMouseEnter={openDropdown}
         onMouseLeave={closeDropdown}
-        className={`absolute top-full left-0 z-10 ${
+        className={`absolute top-full right-0  z-10 ${
           isDropdownOpen ? "" : "hidden"
         }  bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}
       >

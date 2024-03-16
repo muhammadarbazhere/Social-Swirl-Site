@@ -24,7 +24,7 @@ function AddCourseForm() {
     try {
          await dispatch(createUser(formData));
       toast.success('Form submitted successfully!');
-      navigate('/MySecondHome');
+      navigate('/MyCourseList');
     } catch (error) {
       toast.error('Error submitting the form. Please try again.');
     }
@@ -64,7 +64,7 @@ function AddCourseForm() {
             />
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 w-full">
       <label htmlFor="category" className="block text-gray-700 text-sm font-bold mb-2">Category</label>
       <select
         id="category"
@@ -72,7 +72,7 @@ function AddCourseForm() {
         value={formData.category}
         onChange={handleChange}
         required
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       >
         <option value="">Select a category</option>
         <option value="Front-End Development">Front-End Development</option>

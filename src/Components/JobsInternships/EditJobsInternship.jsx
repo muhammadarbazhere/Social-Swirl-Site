@@ -53,9 +53,9 @@ useEffect(() => {
   return (
     <div className='bg-blue-100 pt-6 pb-20'>
       <div className="mx-auto w-full md:w-2/3 font-[Chivo] lg:w-2/5 ">
-        <div className="bg-white font-[Chivo] shadow-md rounded px-8 pb-8 ">
-          <h1 className='space-x-1 flex text-center items-center justify-center pt-8 pb-2'>
-            <p className='text-4xl font-bold'>Update </p>
+        <div className="bg-white pt-3 font-[Chivo] shadow-md rounded px-8 pb-8 ">
+          <h1 className=' text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 text-3xl font-bold text-white flex items-center justify-center space-x-3 py-6 text-center mb-2'>
+            <p className='text-4xl font-bold '>Update </p>
             <span className='text-3xl'>
               {formData.title}
             </span>

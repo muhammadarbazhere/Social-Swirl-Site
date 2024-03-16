@@ -67,55 +67,96 @@ const AllJobs = () => {
             )}
             {!loading && !error && jobs.length > 0 && (
                 <>
-                    <h1 className="py-10 text-center text-[#5F9BCE] text-4xl font-bold">All Jobs</h1>
-                    <table className="min-w-full bg-white border rounded-lg">
-                        <thead>
+                   
+                    <table className="w-full md:min-w-full   rounded-lg">
+                        <thead className=''>
                             <tr>
-                                <th className="border font-bold text-gray-700 text-left px-8 py-4">JOB TITLE</th>
-                                <th className="border font-bold text-gray-700  text-left w-80 px-8 py-4">DESCRIPTION</th>
-                                <th className="border text-left font-bold text-gray-700 px-8 py-4">Issue Date</th>
-                                <th className="border text-left  font-bold text-gray-700 px-8 py-4">Job/Internship</th>
-                                <th className="border text-left  font-bold text-gray-700 px-8 py-4">JOB STATUS</th>
+                                <th className='hidden md:block'>
+
+                                </th>
+                                <th className="  text-left lg:px-2 px-1 py-4 text-xs sm:text-base text-gray-700 ">
+                                <span className='block sm:hidden'>TITLE</span>
+                                    <span className='hidden sm:block'> JOB TITLE</span>
+                                </th>
+                                <th className="  text-left  lg:px-2 px-2 py-4 text-xs sm:text-base text-gray-700">DESCRIPTION</th>
+
+                                <th className="text-left lg:px-2 px-1 py-4 text-xs sm:text-base text-gray-700 ">
+                                    <span className='block sm:hidden'>ISSUE</span>
+                                    <span className='hidden sm:block'> ISSUE DATE</span>
+                                    </th>
+
+                                <th className="hidden sm:block text-left lg:px-2 px-1 py-4 text-xs sm:text-base text-gray-700 ">TYPE</th>
+
+                                <th className=" text-left lg:px-2 px-1 py-4 text-xs sm:text-base text-gray-700 ">
+                                
+                                <span className='block sm:hidden'>STATUS</span>
+                                    <span className='hidden sm:block'>JOB STATUS</span>
+                                </th>
                                 <th>
 
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='bg-white'>
                             {jobs.map((item, id) => (
-                                <tr key={id}>
-                                    <td className="border text-gray-500 px-8 py-4">{item.title}</td>
-                                    <td className="border text-gray-500 px-8 py-4">{item.description}</td>
-                                    <td className="border text-gray-500 px-8 py-4">{formatDate(item.issue)}</td>
-                                    <td className="border text-gray-500 px-8 py-4">{item.jobOrInternship}</td>
-                                    <td className="border text-green-500 px-8 py-4">{item.status}</td>
+                               <React.Fragment key={id} >
+                                <tr >
+                                    <td className='px-4 hidden md:block'>
+                                        <input type="checkbox" />
+                                    </td>
+                                    <td className="   text-gray-500 lg:px-8 px-1 py-4 text-sm sm:text-base">{item.title}</td>
+                                    <td className="   text-gray-500 lg:px-8 px-1 py-4 text-sm sm:text-base">{item.description}</td>
+                                    <td className="   text-gray-500 lg:px-8 px-1  py-4 text-sm sm:text-base">{formatDate(item.issue)}</td>
+                                    <td className=" hidden sm:block  text-gray-500 lg:px-8 px-1 py-4 text-sm sm:text-base">{item.jobOrInternship}</td>
+                                    <td className=" text-green-500  lg:px-8 px-1 py-4 text-sm sm:text-base">{item.status}</td>
                                   
-                                    <td className='space-x-1 border text-gray-500 px-8 py-4 flex flex-row justify-center items-center'>
-<button className="border-2 border-blue-400 rounded-full px-1 py-1 bg-blue-400 text-white hover:bg-white hover:text-blue-400">
+
+                                  
+                                    <td className='  text-gray-500 lg:px-8 px-1 py-4 flex flex-col md:flex-row  md:space-x-1 lg:space-x-2 space-x-0 justify-center items-center'>
+
+            <div className='flex space-x-1 lg:space-x-2 pb-1 '>   
+
+            <button className='border-2 border-blue-400 rounded-full px-2 py-2 bg-blue-400 text-white hover:bg-white hover:text-blue-400'>
+    <IoMdSend size={8} className='block md:hidden'/>
+    <IoMdSend  size={20} className='hidden md:block'/>
+</button>
+
+<button className="border-2 border-blue-400 rounded-full px-2 py-2 bg-blue-400 text-white hover:bg-white hover:text-blue-400">
     <Link to={`/MyeditJobs/${item.id}`}>
-        <MdModeEdit />
+        <MdModeEdit size={8} className='block md:hidden'/>
+        <MdModeEdit size={20}  className='hidden md:block'/>
     </Link>
 </button>
+</div>
 
-
-<button className="border-2 border-blue-400 rounded-full px-1 py-1 bg-blue-400 text-white hover:bg-white hover:text-blue-400 " onClick={() => handleDelete(item.id)}>
-<MdDelete />
+<div className='flex space-x-1 lg:space-x-2'>
+<button className="border-2 border-blue-400 rounded-full px-2 py-2 bg-blue-400 text-white hover:bg-white hover:text-blue-400 " onClick={() => handleDelete(item.id)}>
+<MdDelete size={8} className='block md:hidden'/>
+        <MdDelete size={20} className='hidden md:block'/>
 </button>
 
-<button className='border-2 border-blue-400 rounded-full px-1 py-1 bg-blue-400 text-white hover:bg-white hover:text-blue-400'>
-    <IoMdSend/>
+<button className='border-2 border-blue-400 rounded-full px-2 py-2 bg-blue-400 text-white hover:bg-white hover:text-blue-400'>
+    <BsThreeDots  size={8} className='block md:hidden'/>
+    <BsThreeDots  size={20} className='hidden md:block'/>
 </button>
-
-<button className='border-2 border-blue-400 rounded-full px-1 py-1 bg-blue-400 text-white hover:bg-white hover:text-blue-400'>
-    <BsThreeDots/>
-</button>
-
+</div>
 
 
 
 
                                     </td>
                                 </tr>
+
+                                {/* <tr>
+                                 <td colSpan="6">
+<div className="py-0"></div>
+
+                                 </td>
+                             </tr> */}
+
+                                </React.Fragment>
+
+
                             ))}
                         </tbody>
                     </table>

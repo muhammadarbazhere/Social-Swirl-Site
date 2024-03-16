@@ -25,9 +25,9 @@ const CoursesTable = () => {
     }, [dispatch]);
 
     return (
-        <div className="font-[Chivo] h-full w-full">
-            <h1 className='py-10 text-center text-[#5F9BCE] text-4xl font-bold'>
-                All Courses
+        <div className="font-[Chivo]  h-full pb-6 w-auto">
+            <h1 className='py-10 text-center  text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-4xl font-bold'>
+                Courses List
                 </h1>
             
             {loading && <p className="text-center">Loading...</p>}
@@ -39,27 +39,39 @@ const CoursesTable = () => {
     <p className='text-3xl text-center'> Please add courses...</p>
   </div>
 ) : (
-                <table className="min-w-full bg-white border rounded-lg">
+                <table className="w-full md:min-w-full bg-white  rounded-lg">
                     <thead>
-                        <tr>
-                            <th className="bg-[#5F9BCE] border text-white text-left px-8 py-4">Course Title</th>
-                            <th className="bg-[#5F9BCE] border text-white text-left px-8 py-4">Category</th>
-                            <th className="bg-[#5F9BCE] border text-white text-left w-80 px-8 py-4">Description</th>
-                            <th className="bg-[#5F9BCE] border text-left text-white px-8 py-4">Status</th>
-                            <th className="bg-[#5F9BCE] border text-left text-white px-8 py-4">Duration</th>
-                            <th className="bg-[#5F9BCE] border text-white text-left px-8 py-4">Charges</th>
+                        <tr className=''>
+                            <th className="bg-[#5F9BCE]  text-white text-left lg:px-8 px-2 text-xs sm:text-base py-4">Course Title</th>
+                            <th className="bg-[#5F9BCE] text-white text-left lg:px-8 px-2 py-4 text-xs sm:text-base">Category</th>
+                            <th className="bg-[#5F9BCE]  text-white text-left   md:px-8 px-2 py-4 text-xs sm:text-base">Description</th>
+
+                            <th className="bg-[#5F9BCE] text-white text-left lg:px-8 px-2 py-4 text-xs sm:text-base hidden sm:block">Status</th>
+
+                            <th className="bg-[#5F9BCE]  text-left text-white lg:px-8 px-2 py-4 text-xs sm:text-base">Duration</th>
+                            <th className="bg-[#5F9BCE] text-white text-left lg:px-8 px-2 py-4 text-xs sm:text-base">Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         {users.map((item, id) => (
-                            <tr key={id}>
-                                <td className="border text-gray-500 px-8 py-4">{item.title}</td>
-                                <td className="border text-gray-500 px-8 py-4">{item.category}</td>
-                                <td className="border text-gray-500 px-8 py-4">{item.description}</td>
-                                <td className="border text-green-500 px-8 py-4">Completed</td>
-                                <td className="border text-gray-500 px-8 py-4">{item.duration}</td>
-                                <td className="border text-gray-500 px-8 py-4">${item.charges}</td>
-                            </tr>
+                             <React.Fragment key={id}>
+                             <tr>
+                                 <td className="text-gray-500 lg:px-8 px-2 py-4 text-xs sm:text-base">{item.title}</td>
+                                 <td className="text-gray-500 lg:px-8 px-2 py-4 text-xs sm:text-base">{item.category}</td>
+                                 <td className="text-gray-500 lg:px-8 px-2 py-4 text-xs sm:text-base">{item.description}</td>
+                                 <td className="text-green-500 hidden sm:block lg:px-8 px-2 py-4 text-xs sm:text-base">Completed</td>
+                                 <td className="text-gray-500 lg:px-8 px-2 py-4 text-xs sm:text-base">{item.duration}</td>
+                                 <td className="text-gray-500 lg:px-8 px-2 py-4 text-xs sm:text-base">${item.charges}</td>
+                             </tr>
+                             <tr>
+                                 <td colSpan="6">
+<div className="border"></div>
+
+                                 </td>
+                             </tr>
+                         </React.Fragment>
+                            
+                          
                         ))}
                     </tbody>
                 </table>
